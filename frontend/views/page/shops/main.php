@@ -1,0 +1,88 @@
+<div class="expage">
+    <div class="headblock" style="text-align: center;"><span class="shop-name">Телефон интернет-магазина:</span>
+        <br><span class="shop-phone">+7 499 707-11-14</span>
+        <br><span class="shop-email"><strong>Email: <a href="mailto:contacts@rybalkashop.ru">contacts@rybalkashop.ru</a></strong></span></div>
+
+    <p>
+        <br>
+    </p>
+
+    <p>
+        <br>
+    </p>
+    <div class="shops_grid">
+        <a class="shop_item col-md-6 col-xs-12" href="/page/shop_molodejka" style="background-image: url(/img/upload/Molodejka.jpg);">
+            <div class="shop_heading">Молодёжная</div>
+            <div class="shop_info"><span class="addr">г. Москва, ул. Ярцевская д.34к1</span>
+                <span class="phone">+7-(499)-707-11-89</span>
+                <span class="phone">+7-(495)-005-32-25 +7-(925)-389-59-60</span></div>
+            <div class="shop_overlay">
+                <br>
+            </div>
+        </a>
+        <a class="shop_item col-md-6 col-xs-12" href="/page/shop_bratislavskaya" style="background-image: url(/img/shops/brat.jpg);">
+            <div class="shop_heading">Братиславская</div>
+            <div class="shop_info"><span class="addr">г. Москва, ул. Перерва д.39</span>
+                <span class="phone">+7 499 707-11-55</span>
+                <span class="phone">+7-(917)-578-15-79</span></div>
+            <div class="shop_overlay">
+                <br>
+            </div>
+        </a>
+        <a class="shop_item col-md-6 col-xs-12" href="/page/shop_ptichka1" style="background-image: url(/img/shops/pav1.jpg);">
+            <div class="shop_heading">Рыболовия - Птичий рынок</div>
+            <div class="shop_info"><span class="addr">г. Москва, 14 км МКАД (терр-ия рынка Садовод)</span>
+                <span class="phone">+7-(499)-707-11-33</span>
+                <span class="phone">+7-(919)-764-35-41</span></div>
+            <div class="shop_overlay">
+                <br>
+            </div>
+        </a>
+        <a class="shop_item col-md-6 col-xs-12" href="/page/shop_dzerzhinskiy" style="background-image: url(/img/shops/dzer.jpg);">
+            <div class="shop_heading">16 км МКАД, г. Дзержинский</div>
+            <div class="shop_info"><span class="addr">16 км МКАД, г. Дзержинский, ул. Энергетиков д.16с1</span>
+                <span class="phone">+7-(499)-707-11-15</span>
+                <span class="phone">+7-(926)-783-33-14</span></div>
+            <div class="shop_overlay">
+                <br>
+            </div>
+        </a>
+        <a class="shop_item col-md-6 col-xs-12" href="/page/shop_ptichka2" style="background-image: url(/img/shops/pav2.jpg);">
+            <div class="shop_heading">Рыболов на Птичке - Птичий рынок</div>
+            <div class="shop_info"><span class="addr">г. Москва, 14 км МКАД (терр-ия рынка Садовод)</span>
+                <span class="phone">+7-(499)-707-11-88</span>
+                <span class="phone">+7-(916)-268-77-13</span></div>
+            <div class="shop_overlay">
+                <br>
+            </div>
+        </a>
+        <a class="shop_item col-md-6 col-xs-12" href="/page/samovyvoz-izmailovo" style="background-image: url(/img/upload/Izmaylovo.jpg);">
+            <div class="shop_heading">Самовывоз Измайлово</div>
+            <div class="shop_info"><span class="addr">г. Москва, ул. Вернисажная д.7c1</span>
+                <span class="addr">Пункт самовывоза</span>
+                <span class="phone">+7-(499)-393-35-00 +7-(495)-772-01-49</span></div>
+            <div class="shop_overlay">
+                <br>
+            </div>
+        </a>
+    </div>
+    <div class="clearfix">
+        <br>
+    </div>
+</div>
+
+<div class="expage_blue_block">
+    <div class="text-center">Пункты самовывоза СДЭК</div>
+    <div id="mapcontainer"><span class="fr-video fr-fvc fr-dvb fr-draggable" contenteditable="false" draggable="true"><iframe src="/site/cdek-map" style="width: 100%; height: 300px;"></iframe>
+</div>
+
+<div class="expage_blue_block">
+
+    <p class="text-info">ИП &laquo;Русяев Максим Васильевич&raquo;</p>
+
+    <p class="text-info">ОГРНИП: 305504216100028</p>
+
+    <p class="text-info">Фактический адрес: г. Дзержинский, ул. Энергетиков, 16 стр.2</p>
+
+    <p class="text-info">Юридический адрес: 141315 Московская обл. г. Сергиев Посад, Кукуевская наб. 7</p>
+</div>

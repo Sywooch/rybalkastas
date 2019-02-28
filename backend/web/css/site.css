@@ -1,0 +1,224 @@
+html,
+body {
+    height: 100%;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.col-md-6.brand {
+    height: 50px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+.file-preview-image {
+    height: 160px;
+    vertical-align: middle;
+}
+
+.file-thumbnail-footer{
+    display: none;
+}
+
+.fr-element.fr-view div{
+    -webkit-box-shadow: 0px 0px 0px 1px rgba(17,0,255,0.12);
+    -moz-box-shadow: 0px 0px 0px 1px rgba(17,0,255,0.12);
+    box-shadow: 0px 0px 0px 1px rgba(17,0,255,0.12);
+}
+
+.fr-element.fr-view p{
+    -webkit-box-shadow: 0px 0px 0px 1px rgba(255,0,225,0.18);
+    -moz-box-shadow: 0px 0px 0px 1px rgba(255,0,225,0.18);
+    box-shadow: 0px 0px 0px 1px rgba(255,0,225,0.18);
+}
+
+ul#users-online img {
+    width: 35px;
+    float: left;
+    border-radius: 50%;
+}
+
+.bs-wizard {margin-top: 40px;}
+
+/*Form Wizard*/
+.bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0;}
+.bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
+.bs-wizard > .bs-wizard-step + .bs-wizard-step {}
+.bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 16px; margin-bottom: 5px;}
+.bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 14px;}
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background: #fbe8aa; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;}
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 14px; height: 14px; background: #fbbd19; border-radius: 50px; position: absolute; top: 8px; left: 8px; }
+.bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 8px; box-shadow: none; margin: 20px 0;}
+.bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background: #fbe8aa;}
+.bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {width:100%;}
+.bs-wizard > .bs-wizard-step.active > .progress > .progress-bar {width:50%;}
+.bs-wizard > .bs-wizard-step:first-child.active > .progress > .progress-bar {width:0%;}
+.bs-wizard > .bs-wizard-step:last-child.active > .progress > .progress-bar {width: 100%;}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot {background-color: #f5f5f5;}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot:after {opacity: 0;}
+.bs-wizard > .bs-wizard-step:first-child  > .progress {left: 50%; width: 50%;}
+.bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}
+.bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
+/*END Form Wizard*/
+
+a[href*="froala"] {
+    position: absolute!important;
+    left: -99999px!important;
+}
+
+/* FileInput module */
+.krajee-default.file-preview-frame .kv-file-content {
+    width: auto;
+    height: auto;
+    padding: 10px;
+}
+
+/* Categories update-page */
+.cattreemain ul li {
+    display: block;
+    padding: 10px;
+    margin-left: 5px;
+    background: #fff;
+    border: solid 1px #ECF0F5;
+    cursor: pointer;
+    position: relative;
+    text-align: left;
+}
+
+.cattreemain i {
+    margin-right: 10px;
+}
+
+.cattreemain ul{
+    padding:0;
+}
+
+.cattreemain li.highlight {
+    background: #c1ffd3;
+}
+
+.prdtreemain i {
+    margin-right: 10px;
+}
+
+.prdtreemain ul{
+    padding:0;
+}
+
+.preloader {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-color: rgba(139, 139, 139, 0.58);
+}
+
+.preloader i {
+    line-height: 40px;
+}
+
+.cbx-container {
+    float: right;
+}
+
+ul.sublist li {
+    display: flex;
+    list-style-type: none;
+    text-align: left;
+    padding: 5px;
+    background: #f1f1f1;
+    border: solid 1px #D9D9D9;
+}
+
+ul.sublist li > span {
+    width: 100%;
+}
+
+ul.sublist{
+    padding: 0;
+}

@@ -1,0 +1,1 @@
+SELECT * FROM lols WHERE lolovich = 'asd';

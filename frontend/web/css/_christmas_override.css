@@ -1,0 +1,47 @@
+body{background:url(../img/bg_chr18.jpg)!important;background-size: cover!important;background-position: center 80%!important;background-attachment: fixed!important;}
+div#snowfall {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+footer, footer + .container {
+    position: relative;
+}
+.mobile-bg{
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 125%; /* To compensate for mobile browser address bar space */
+    background: url("/img/bg_chr18.jpg") no-repeat;
+    background-size: cover;
+    background-position: left;
+}
+
+@media (min-width: 600px) {
+    .mobile-bg {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .contact {
+        margin-top: 0!important;
+    }
+}
+
+@media screen and (max-width: 667px) {
+    body {
+        overflow-x: hidden !important;
+    }
+    .container {
+        max-width: 100% !important;
+        /*overflow-x: hidden !important;*/
+    }
+}
+
+header nav.mnav > ul > li{
+    display: block;!important;
+}

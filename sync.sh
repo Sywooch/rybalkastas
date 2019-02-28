@@ -1,0 +1,1 @@
+for ((n=0;n<30;n++)); do php /var/www/html/yii reignier/sync-products; done

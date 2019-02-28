@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /cart/
+Sitemap: http://rybalkashop.ru/sitemap
+Host: rybalkashop.ru
