@@ -78,7 +78,6 @@ class ParserController
             $name = preg_replace("~</?h1[^>]*>~", '', $name);
             $name = preg_replace("/Комментарии |Вопросы |Отзывы |Обзоры /", '', $name);
             $name = preg_replace("/[\—\(\)]+ /", '', $name);
-
             $price = (string)$document->find('#prod-price-box > div.prod-price-value > span');
             $prices[] = '';
             $price = preg_match("/\d+/", $price, $prices);

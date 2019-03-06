@@ -39,4 +39,7 @@ class SiteController extends Controller
         return 'error';
     }
 
+    public function actionTest(){
+        return 'asdasd';
+    }
 }

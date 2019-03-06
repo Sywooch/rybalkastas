@@ -65,7 +65,10 @@
         "phpro/soap-client": "^0.6.0",
         "kartik-v/bootstrap-fileinput": "@dev",
         "yii2mod/yii2-sweet-alert": "*",
-        "borales/yii2-phone-input": "*"
+        "borales/yii2-phone-input": "*",
+        "guzzlehttp/guzzle": "~6.0",
+        "electrolinux/phpquery": "dev-master",
+        "mk-j/php_xlsxwriter": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -16,27 +16,27 @@ use yii\helpers\Json;
 
 class Controller extends \yii\rest\Controller {
 
-    public function behaviors()
-    {
-        $behaviors = parent::behaviors();
-
-        $behaviors['corsFilter'] = [
-            'class' => Cors::className(),
-            'cors' => [
-                'Origin' => ['*'],
-                'Access-Control-Request-Method' => ['GET', 'HEAD', 'OPTIONS', 'POST', 'PUT'],
-                'Access-Control-Allow-Headers' => ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization', 'Link'],
-                'Access-Control-Request-Headers' => ['Origin', 'X-Requested-With', 'Content-Type', 'accept', 'Authorization'],
-                'Access-Control-Allow-Credentials' => true,
-                'Access-Control-Max-Age' => 3600,
-                'Access-Control-Allow-Origin' => '*',
-                'Access-Control-Expose-Headers' => ['Authorization', 'Access-Control-Allow-Origin'],
-            ]
-        ];
-        $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_JSON;
-
-        return $behaviors;
-    }
+//    public function behaviors()
+//    {
+//        $behaviors = parent::behaviors();
+//
+//        $behaviors['corsFilter'] = [
+//            'class' => Cors::className(),
+//            'cors' => [
+//                'Origin' => ['*'],
+//                'Access-Control-Request-Method' => ['GET', 'HEAD', 'OPTIONS', 'POST', 'PUT'],
+//                'Access-Control-Allow-Headers' => ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization', 'Link'],
+//                'Access-Control-Request-Headers' => ['Origin', 'X-Requested-With', 'Content-Type', 'accept', 'Authorization'],
+//                'Access-Control-Allow-Credentials' => true,
+//                'Access-Control-Max-Age' => 3600,
+//                'Access-Control-Allow-Origin' => '*',
+//                'Access-Control-Expose-Headers' => ['Authorization', 'Access-Control-Allow-Origin'],
+//            ]
+//        ];
+//        $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_JSON;
+//
+//        return $behaviors;
+//    }
 
     public function beforeAction($action)
     {

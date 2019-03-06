@@ -7,7 +7,6 @@ return [
     'controllerNamespace' => 'api\controllers',
     'language' => 'ru',
     'components' => [
-
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -30,5 +29,14 @@ return [
     ],
     'params' => [
         'tempAuth' => 'a9s8dalxsjdhas-d987'
+    ],
+
+    'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+        ],
+        'backend'=>[
+            'class'=>'api\modules\backend\Module'
+        ]
     ],
 ];

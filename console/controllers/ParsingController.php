@@ -13,6 +13,7 @@ use common\models\SCProductsParsing;
 use common\models\SCProducts;
 use common\models\SCParsing;
 use XLSXWriter;
+
 class ParsingController extends Controller
 {
 //    protected $base;
@@ -21,19 +22,56 @@ class ParsingController extends Controller
     {
 
 
+        for ($i = 0; $i < 2; $i++)
+        {
+//1
+            $fmagazin = new ParserController('https://fmagazin.ru/', true,
+                '#content > h1',
+                '#prod-price-box > div.prod-price-value > span > span', //1
+                '#prod-price-box > div.prod-price-value > span', //2
+            '#prod-price-box > div.prod-price-value > span > span > span' //3
+#prod-price-box > div.prod-price-value > span
 
-//        $p = new ParserController('https://fmagazin.ru/banax/snasti/udilisha/nahlystovie_udulisha/udilishe_banax_mega_fly.mfl9064.html',  1, true);
-//        $p->crawl();
-//#prod-price-box > div.prod-price-value > span
-//       #content > h1
-//        $p = new ParserController('https://fmagazin.ru/shimano/snasti/katushki/zapasnye_shpuli/nakladka_ekonomayzer_na_shpulyu_shimano_match_line_reducer.rd15384.html',  1, true);
-//        $p->crawl();
-//#prod-price-box > div.prod-price-value > span
-//#content > h1
-                $p = new ParserController('https://fmagazin.ru/', true);
-        $p->crawl();
 
+            );
+            $fmagazin->crawl();
+//2
+//            $spinningline = new ParserController('https://spinningline.ru/', true,
+//                '#page-main-content > div.main-prod-info > div.prod-info-wrap > div > div.prod-info-left > div > div.b__hdr-big.b__hdr-big_border > h1',
+//                '#page-main-content > div.main-prod-info > div.prod-info-wrap > div > div.prod-info-right > div > div:nth-child(1) > div.prod-price-wrap > div'
+//            );
+//            $spinningline->crawl();
+//3
+//            $spinningline = new ParserController('http://www.x-fishing.ru/', true,
+//                'body > div.page-container.l-head > div:nth-child(3) > main > div > div.l-card.itemRow > h1',
+//                'body > div.page-container.l-head > div:nth-child(3) > main > div > div.l-card.itemRow > div.l-card__split > div.l-card__right > div:nth-child(1) > div > div.prod-info__price > div > div > div.price__content > div > span'
+//            );
+//            $spinningline->crawl();
+
+
+
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -228,8 +266,6 @@ class ParsingController extends Controller
             $prodID = $product['productID'];     //ID продукта
 
 
-
-
             $percent = 0;
             $thisPars = ['id' => 0, 'percent' => 0, 'name' => ' '];     //Массив для промежуточного сохранения
 //            $pars = preg_replace('/[^a-z0-9,]/iu', '', $pars);
@@ -300,7 +336,6 @@ class ParsingController extends Controller
 //    $ProductsParsing->parsing_id = $truePars;
 //    $ProductsParsing->product_id = $prodID;
 //    $ProductsParsing->save();
-
 
 
 //    var_dump($start);

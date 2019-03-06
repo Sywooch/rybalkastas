@@ -47,9 +47,7 @@ class SCParsing extends ActiveRecord
     public function rules()
     {
         return [
-//            ['link'], 'string',
-//            ['price'], 'double',
-            ['name', 'unique'],
+//            ['name', 'unique'],
 
         ];
     }
@@ -63,6 +61,8 @@ class SCParsing extends ActiveRecord
             'name' => 'name',
             'link' => 'link',
             'price' => 'price',
+            'time' => 'time',
+            'host' => 'host',
         ];
     }
 

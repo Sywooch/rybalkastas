@@ -20,15 +20,15 @@ return [
             'cachePath' => '@frontend/runtime/fragmentCache',
         ],
 
-        'dbCache' => [
-            'class' => 'yii\caching\DbCache',
-            'db' => 'dbc',
-            'cacheTable' => 'cache',
-        ],
+//        'dbCache' => [
+//            'class' => 'yii\caching\DbCache',
+//            'db' => 'dbc',
+//            'cacheTable' => 'cache',
+//        ],
 
-        /*'dbCache' => [
+        'dbCache' => [
             'class' => 'yii\caching\DummyCache'
-        ],*/
+        ],
 
         'glide' => [
             'class' => 'trntv\glide\components\Glide',
@@ -485,18 +485,18 @@ return [
                 // ...
             ],
         ],
-
-        'soap' => [
-            'class' => 'mongosoft\soapclient\Client',
-            'url' => 'http://89.223.24.77/srv/UT/ws/SiteSync/?wsdl',
-            'options' => [
-                'login' => 'siteabserver',
-                'password' => 'revresbaetis',
-                'cache_wsdl' => WSDL_CACHE_NONE,
-                'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP,
-                'location' => str_replace('?wsdl', '', $url)
-            ],
-        ],
+//
+//        'soap' => [
+//            'class' => 'mongosoft\soapclient\Client',
+//            'url' => 'http://89.223.24.77/srv/UT/ws/SiteSync/?wsdl',
+//            'options' => [
+//                'login' => 'siteabserver',
+//                'password' => 'revresbaetis',
+//                'cache_wsdl' => WSDL_CACHE_NONE,
+//                'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP,
+//                'location' => str_replace('?wsdl', '', $url)
+//            ],
+//        ],
 
         'bot' => [
             'class' => 'SonkoDmitry\Yii\TelegramBot\Component',

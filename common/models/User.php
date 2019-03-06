@@ -94,6 +94,9 @@ class User extends ActiveRecord implements IdentityInterface
      * @return Finder
      * @throws \yii\base\InvalidConfigException
      */
+
+
+
     protected function getFinder()
     {
         return \Yii::$container->get(Finder::className());

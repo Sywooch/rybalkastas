@@ -1,17 +1,22 @@
 <?php
+
 namespace console\controllers;
 
 
 use GuzzleHttp\Client;
 use common\models\SCParsing;
-
-
+use common\models\SCParsingLinks;
+use phpQuery;
 
 
 class ParserController
 {
 
     private $url;
+    private $selectorName;
+    private $selectorPrice1;
+    private $selectorPrice2;
+    private $selectorPrice3;
     private $results = array();
     private $same_host = false;
     private $host;
@@ -38,63 +43,173 @@ class ParserController
         $this->setHost($this->getHostFromUrl($url));
     }
 
-    public function __construct($url = null, $same_host = false)
+    public function setSelectorPrice($selectorPrice1, $selectorPrice2, $selectorPrice3)
     {
-        if (!empty($url)) $this->setUrl($url);
-        $this->setSameHost($same_host);
+        $this->selectorPrice1 = $selectorPrice1;
+        $this->selectorPrice2 = $selectorPrice2;
+        $this->selectorPrice3 = $selectorPrice3;
     }
 
+    public function setSelectorName($selectorName)
+    {
+        $this->selectorName = $selectorName;
+    }
+
+    public function __construct($url = null,
+                                $same_host = false, $selectorName,
+                                $selectorPrice1, $selectorPrice2, $selectorPrice3)
+    {
+        if (!empty($url)) $this->setUrl($url);
+        if (!empty($selectorName)) $this->setSelectorName($selectorName);
+        if (!empty($selectorPrice1))
+            $this->setSelectorPrice($selectorPrice1,
+                $selectorPrice2, $selectorPrice3);
+        $this->setSameHost($same_host);
+
+    }
 
 
     //MAIN METHOD
     public function crawl()
     {
+
         if (empty($this->url)) throw new \Exception('URL not set!');
-        $this->_crawl($this->url);
+
+        $this->_crawl($this->url, $this->selectorName, $this->selectorPrice1, $this->selectorPrice2, $this->selectorPrice3);
+
         return $this->results;
+
     }
 
 
-
-
-    public function _crawl($url)
+    public function _crawl($url, $selectorName, $selectorPrice1, $selectorPrice2, $selectorPrice3)
     {
+//        static $seen = array();
+        $mainUrl = $this->url;
+
+//sleep(2);
+        $today = time();
+        $seenLinks = new SCParsingLinks;
+        $seenLinks->links = $url;
+        $currentUrlParsing = SCParsingLinks::find()->where(['links' => $url])->one();
+
+        if ($currentUrlParsing != null) {
+            $parsTime = $currentUrlParsing->created_at;
+            $diffTime = $today - $parsTime;
+        }
+
+//        if (isset($seen[$url])) return;
 
 
-        static $seen = array();
+//        $diffTime < 20000 &&
+//        $diffTime != 0 &&
+//        $currentUrlParsing != $mainUrl
+        if ($currentUrlParsing) return;
 
-        if (isset($seen[$url])) return;
-                try {
+        try {
+
             $client = new Client();
+            if (empty($client)) {
+                var_dump('not client');
+            }
             $res = $client->request('GET', $url);
 
 
             $body = $res->getBody();
+            if (empty($body)) {
+                var_dump('not $body');
+            }
 
 //            $body = mb_convert_encoding($this->results, 'utf-8', 'auto');
             $document = \phpQuery::newDocumentHTML($body);
 
-            $name = (string)$document->find('#content > h1');
-            $name = preg_replace("~</?h1[^>]*>~", '', $name);
-            $name = preg_replace("/Комментарии |Вопросы |Отзывы |Обзоры /", '', $name);
-            $name = preg_replace("/[\—\(\)]+ /", '', $name);
+            $name = (string)$document->find($selectorName);
+            $name1 = '';
+            $name = strip_tags($name, $name1);
+            $name1 = preg_replace("/Комментарии |Вопросы |Отзывы |Обзоры /", '', $name);
+            $name1 = preg_replace("/[\—\(\)]+ /", '', $name1);
 
-            $price = (string)$document->find('#prod-price-box > div.prod-price-value > span');
+//            if (empty($name)) {
+//                var_dump('not $name');
+//            }
+
+
+            $price1 = (string)$document->find($selectorPrice1);
+            $price2 = (string)$document->find($selectorPrice2);
+            $price3 = (string)$document->find($selectorPrice3);
+
+            if (!empty($price1))
+                $truePrice = $price1;
+            elseif (!empty($price2))
+                $truePrice = $price2;
+            elseif (!empty($price3))
+                $truePrice = $price3;
+
+
+//            if (empty($truePrice)) {
+//                var_dump('not price');
+//            }
+
+//            else var_dump('price Empty');
+//var_dump('Price1: ', $price1);
+//var_dump('Price2: ',$price2);
+//var_dump('Price3: ',$price3);
+//var_dump('PriceTrue: ',$truePrice);
+
+
             $prices[] = '';
-            $price = preg_match("/\d+/", $price, $prices);
+
+            $price = preg_match("/\d+/", $truePrice, $prices);
+
             $price = $prices[0];
+
+//            if (!empty($truePrice)) {
+            if ($url == "https://fmagazin.ru/daiwa/snasti/katushki/bezynertsionnye/peredniy_friction/katushka_daiwa_regal_5ia.html") {
+                var_dump('START BEFORE');
+
+                var_dump($truePrice);
+                var_dump($price);
+                var_dump("Имя", $name);
+                var_dump($url);
+                var_dump('END BEFORE');
+                die;
+            }
             $price = (double)$price;
-
             $parsProduct = new SCParsing();
-            $parsProduct->price = $price;
-            $parsProduct->link = $this->url;
-            $parsProduct->name = $name;
-            $parsProduct->save();
-            unset($parsProduct);
 
+            $parsProduct->price = $price;
+            $parsProduct->link = $url;
+            $parsProduct->name = $name;
+//                $parsProduct->time = $today;
+            $parsProduct->host = $this->url;
+
+            $parsProduct->save();
+//            var_dump('1 step');
+
+//            if ($url = "https://fmagazin.ru/yo_zuri/snasti/primanki/voblery/rattlin/vobler_yo_zuri_hardcore_fintail_vibe.html") {
+                var_dump('START AFTER');
+
+                if (empty($parsProduct)) {
+                    var_dump('no product');
+                } else {
+                    var_dump($truePrice);
+                    var_dump($price);
+                    var_dump($name);
+                    var_dump($url);
+                    var_dump('END AFTER');
+                    var_dump('is product');
+                }
+
+
+
+//            }
         } catch (\Exception $ex) {
+//            var_dump('error');
+
         }
 
+
+        $seenLinks->save();
         $seen[$url] = true;
         $dom = new \DOMDocument('1.0');
         @$dom->loadHTMLFile($url);
@@ -102,18 +217,22 @@ class ParserController
             'url' => $url,
             'content' => @$dom->saveHTML()
         );
-        var_dump($url);
+
 
         $anchors = $dom->getElementsByTagName('a');
         foreach ($anchors as $element) {
+
             if (!$href = $this->buildUrl($url, $element->getAttribute('href'))) continue;
-            $this->_crawl($href);
+
+            $this->_crawl($href, $selectorName, $selectorPrice1, $selectorPrice2, $selectorPrice3);
 
 
         }
 
+
         return $url;
     }
+
 
     private function buildUrl($url, $href)
     { //Построение URL
@@ -145,6 +264,7 @@ class ParserController
         }
         if ($this->same_host && $this->host != $this->getHostFromUrl($href)) return false;
         return $href;
+
     }
 
     private function buildUrlFromParts($parts)

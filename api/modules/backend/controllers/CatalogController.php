@@ -47,9 +47,6 @@ class CatalogController extends  \api\components\Controller
                 'meta'=>Json::decode($cat->meta_data),
                 'isLeaf'=>false,
                 'isChild'=>true
-
-
-
             ];
         }
 
@@ -63,5 +60,10 @@ class CatalogController extends  \api\components\Controller
 
     public function actionTree(){
 
+    }
+
+    public function actionCategory($id){
+        $category = SCCategories::findOne($id);
+        return ['category'=>$category];
     }
 }
