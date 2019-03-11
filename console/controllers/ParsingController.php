@@ -22,10 +22,9 @@ class ParsingController extends Controller
     {
 
 
-        for ($i = 0; $i < 2; $i++)
-        {
+
 //1
-            $fmagazin = new ParserController('https://fmagazin.ru/', true,
+            $fmagazin = new ParserController('http://www.fmagazin.ru/', true,
                 '#content > h1',
                 '#prod-price-box > div.prod-price-value > span > span', //1
                 '#prod-price-box > div.prod-price-value > span', //2
@@ -50,7 +49,7 @@ class ParsingController extends Controller
 
 
 
-        }
+
     }
 
 

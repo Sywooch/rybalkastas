@@ -92,7 +92,7 @@ class ParserController
         $seenLinks = new SCParsingLinks;
         $seenLinks->links = $url;
         $currentUrlParsing = SCParsingLinks::find()->where(['links' => $url])->one();
-
+//var_dump($currentUrlParsing);
         if ($currentUrlParsing != null) {
             $parsTime = $currentUrlParsing->created_at;
             $diffTime = $today - $parsTime;
@@ -107,7 +107,6 @@ class ParserController
         if ($currentUrlParsing) return;
 
         try {
-
             $client = new Client();
             if (empty($client)) {
                 var_dump('not client');
@@ -145,69 +144,82 @@ class ParserController
             elseif (!empty($price3))
                 $truePrice = $price3;
 
-
 //            if (empty($truePrice)) {
 //                var_dump('not price');
 //            }
 
 //            else var_dump('price Empty');
-//var_dump('Price1: ', $price1);
-//var_dump('Price2: ',$price2);
-//var_dump('Price3: ',$price3);
-//var_dump('PriceTrue: ',$truePrice);
+
 
 
             $prices[] = '';
 
-            $price = preg_match("/\d+/", $truePrice, $prices);
+if(!empty($truePrice))
+{
+    $truePrice = preg_match("/\d+/", $truePrice, $prices);
+}
+            $truePrice = $prices[0];
 
-            $price = $prices[0];
+//            var_dump('step');
+//            var_dump($url);
 
-//            if (!empty($truePrice)) {
-            if ($url == "https://fmagazin.ru/daiwa/snasti/katushki/bezynertsionnye/peredniy_friction/katushka_daiwa_regal_5ia.html") {
+            if ($url == "https://fmagazin.ru/daiwa/snasti/katushki/bezynertsionnye/peredniy_friction/katushka_daiwa_regal_5ia.html"||
+                $url == 'https://www.fmagazin.ru/daiwa/snasti/katushki/bezynertsionnye/peredniy_friction/katushka_daiwa_regal_5ia.html'||
+                $url == 'http://www.fmagazin.ru/abu_garcia/snasti/primanki/voblery/jerkbait/vobler_abu_garcia_hi_lo_jerkbait.html' ||
+                $url == 'http://www.fmagazin.ru/pontoon21/snasti/primanki/voblery/shad/vobler_pontoon_21_kalikana_dun.html'||
+                $url == 'https://www.fmagazin.ru/pontoon21/snasti/primanki/voblery/shad/vobler_pontoon_21_kalikana_dun.html' ||
+                $url == 'https://www.fmagazin.ru/pontoon21/snasti/primanki/voblery/shad/vobler_pontoon_21_kalikana_dun.html')
+            {
                 var_dump('START BEFORE');
-
                 var_dump($truePrice);
-                var_dump($price);
                 var_dump("Имя", $name);
                 var_dump($url);
                 var_dump('END BEFORE');
                 die;
             }
-            $price = (double)$price;
+
+            if(!empty($truePrice))
+            {
+
+            $truePrice = (double)$truePrice;
             $parsProduct = new SCParsing();
 
-            $parsProduct->price = $price;
+            $parsProduct->price = $truePrice;
             $parsProduct->link = $url;
             $parsProduct->name = $name;
 //                $parsProduct->time = $today;
             $parsProduct->host = $this->url;
 
             $parsProduct->save();
-//            var_dump('1 step');
+
 
 //            if ($url = "https://fmagazin.ru/yo_zuri/snasti/primanki/voblery/rattlin/vobler_yo_zuri_hardcore_fintail_vibe.html") {
-                var_dump('START AFTER');
+//                var_dump('START AFTER');
 
-                if (empty($parsProduct)) {
+                if ($url == "https://fmagazin.ru/daiwa/snasti/katushki/bezynertsionnye/peredniy_friction/katushka_daiwa_regal_5ia.html"||
+                    $url ==  'https://www.fmagazin.ru/daiwa/snasti/katushki/bezynertsionnye/peredniy_friction/katushka_daiwa_regal_5ia.html'||
+                    $url == 'http://www.fmagazin.ru/abu_garcia/snasti/primanki/voblery/jerkbait/vobler_abu_garcia_hi_lo_jerkbait.html' ||
+                    $url == 'http://www.fmagazin.ru/pontoon21/snasti/primanki/voblery/shad/vobler_pontoon_21_kalikana_dun.html'||
+                    $url == 'https://www.fmagazin.ru/pontoon21/snasti/primanki/voblery/shad/vobler_pontoon_21_kalikana_dun.html' ||
+                    $url == 'https://www.fmagazin.ru/pontoon21/snasti/primanki/voblery/shad/vobler_pontoon_21_kalikana_dun.html'
+                   ) {
                     var_dump('no product');
-                } else {
                     var_dump($truePrice);
-                    var_dump($price);
                     var_dump($name);
                     var_dump($url);
                     var_dump('END AFTER');
                     var_dump('is product');
+                    die;
+
                 }
 
+            }
 
 
-//            }
         } catch (\Exception $ex) {
 //            var_dump('error');
 
         }
-
 
         $seenLinks->save();
         $seen[$url] = true;
@@ -222,8 +234,15 @@ class ParserController
         $anchors = $dom->getElementsByTagName('a');
         foreach ($anchors as $element) {
 
-            if (!$href = $this->buildUrl($url, $element->getAttribute('href'))) continue;
-
+            if (!$href = $this->buildUrl($url, $element->getAttribute('href')))
+            {
+                var_dump($url)  ;
+                var_dump('no');
+                continue;
+            }
+//            var_dump($href)  ;
+//
+//            var_dump('yes');
             $this->_crawl($href, $selectorName, $selectorPrice1, $selectorPrice2, $selectorPrice3);
 
 
@@ -239,7 +258,7 @@ class ParserController
 
         $url = trim($url);
         $href = trim($href);
-        if (strpos($href, 'http') !== 0) {
+        if (strpos($href, 'http') !== 0 ||strpos($href, 'https') !== 0) {
             //Не сканируем яваскрипт и внутренние якоря:
             if (strpos($href, 'javascript:') === 0 || strpos($href, '#') === 0) return false;
             //Остальное смотрим:
